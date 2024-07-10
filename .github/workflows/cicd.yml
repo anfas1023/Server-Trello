@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Login to Docker Hub
-        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        run: docker login -u anfasmuhammed  -p 8590183325@Anfas
 
       - name: Build Docker Image
         run: docker build -t anfasmuhammed/work-way .
@@ -29,4 +29,4 @@ jobs:
         run: docker pull anfasmuhammed/work-way:latest
 
       - name: Run Docker Container
-        run: docker run -d -p 5000:5000 --name work-way-container -e MONGO_URL='${{secrets.MONGO_URL}}  anfasmuhammed/work-way'
+        run: docker run -d -p 5000:5000 --name work-way-container -e MONGO_URL=mongodb+srv://anfasmuhammed936:anfasmuhammed8590@cluster0.6hcxbof.mongodb.net/  anfasmuhammed/work-way'
