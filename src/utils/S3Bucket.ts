@@ -1,14 +1,3 @@
-// import AWS from 'aws-sdk'
-
-// const s3= new AWS.S3();
-
-// (async ()=>{
-//     s3.putObject({
-//         Body:"Hello World",
-//         Bucket:"project-my-upload",
-//         Key:"my-file.txt"
-//     }).promise()
-// })();
 
 
 import multer from 'multer'

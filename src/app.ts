@@ -9,7 +9,7 @@ import passport1 from "./utils/passport-github";
 import { createServer } from "http";
 import { Server } from "socket.io";
 dotenv.config();
-const port = 5000;
+const port = process.env.PORT;
 connectDatabase();
 import authRouter from "./presentation/routes/authRoutes";
 import workspaceroute from "./presentation/routes/workspaceroute";
@@ -17,41 +17,19 @@ import folderRouter from "./presentation/routes/folderRouter";
 import boardRoutes from "./presentation/routes/boardRoutes";
 import taskRoutes from "./presentation/routes/taskRoute";
 import chatRoutes from "./presentation/routes/chatRoute";
-import { User } from "./infrastructure/database/model/authModel";
-// import AWS from 'aws-sdk'
 
-// const s3= new AWS.S3();
-
-// (async ()=>{
-//     s3.putObject({
-//         Body:"Hello World",
-//         Bucket:"project-my-upload",
-//         Key:"my-file.txt"
-//     }).promise()
-// })();
 
 const app = express();
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   },
 });
 
-// io.on("connection", (socket) => {
-//   console.log("a user connected");
-//   socket.on("message", (msg) => {
-//     console.log("message: " + msg);
-//     io.emit("message", msg);
-//   });
 
-//   // Handle disconnection
-//   socket.on("disconnect", () => {
-//     console.log("user disconnected");
-//   });
-// });
 
 type chatusersType = {
   user: { userId: string; socktId: string };
@@ -138,16 +116,10 @@ io.on("connection", (socket) => {
     console.log(data);
  });
 
-//  socket.off("newTaskAssigned",(data)=>{
-//   console.log(data);
-  
-// });
 
 });
 
 export { io };
-
-// httpServer.listen(3000);
 app.use(passport.initialize());
 app.use(passport1.initialize());
 
@@ -177,18 +149,6 @@ app.use(
 app.use(passport.session());
 app.use(passport1.session());
 
-// app.get('/',(req,res)=>{
-//     res.send("Hello World")
-// app.use((err, req, res, next) => {
-//   const statusCode = err.statusCode || 500;
-//   const messsage = err.messsage || "Internal Server Error";
-//   return res.status(statusCode).json({
-//     sucess: false,
-//     error: messsage,
-//     statusCode,
-//   });
-// });
-// })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

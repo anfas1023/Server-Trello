@@ -11,8 +11,8 @@ export class Mailer {
             port: 587,
             secure: true,
             auth: {
-                user: "anfasmuhammed936@gmail.com",
-                pass: "fgck ygso rghz nqwk",
+                user: GMAIL_USERNAME,
+                pass: GMAIL_PASSWORD,
             },
             tls: {
                 rejectUnauthorized: false,
@@ -20,9 +20,9 @@ export class Mailer {
         });
 
         const mailOptions = {
-            from: "anfasmuhammed936@gmail.com",
+            from: GMAIL_USERNAME,
             to: to,
-            subject: "OTP Message",
+            subject: "Verification Message",
             html: data, 
         }
 
