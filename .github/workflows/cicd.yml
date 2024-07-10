@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Login to Docker Hub
-        run: docker login -u anfasmuhammed -p 8590183325@Anfas
+        run: docker login -u anfasmuhammed -p 8590183325@Anfas --password-stdin.
 
       - name: Build Docker Image
         run: docker build -t anfasmuhammed/work-way .
