@@ -19,7 +19,7 @@ jobs:
         run: docker build -t anfasmuhammed/work-way .
 
       - name: Publish Image to Docker Hub
-        run: docker push anfasmuhammed/work-way:latest 
+        run: docker push anfasmuhammed/work-way:latest
 
   deploy:
     needs: build
@@ -28,6 +28,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull anfasmuhammed/work-way:latest
       - name: Delete old container
-        run:  docker rm -f work-way-container 
+        run: docker rm -f work-way-container
       - name: Run Docker Container
-        run: docker run -d -p 5000:5000 --name work-way-container  anfasmuhammed/work-way:latest'
+        run: docker run -d -p 5000:5000 --name work-way-container anfasmuhammed/work-way:latest
