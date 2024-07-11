@@ -5,6 +5,7 @@ interface AttachmentDocument extends Document {
   }
 
 interface IMessage extends Document {
+    _id:string
     conversationId: string;
     senderId: string;
     message: string;
