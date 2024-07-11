@@ -153,7 +153,7 @@ try {
   
         if (checkConversation.length > 0) {
           checkMessage(checkConversation[0]._id as string,senderId,reciverId);  
-        console.log("2");
+        console.log("2");   
 
         } else {
           const reciverDetails=await User.findById(reciverId);
