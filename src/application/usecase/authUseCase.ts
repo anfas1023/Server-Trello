@@ -1,6 +1,6 @@
 import { IauthUseCase } from "../interface/IauthUsecase";
 import { IAuthUserRepostory } from "../interface/IAuthUserRepostory";
-import { User } from "../../domain/entities/User";
+import { user } from "../../domain/entities/User";
 import { generateOtp } from "../../utils/generateOTP";
 import { IMailer } from "../interface/IMailer";
 import generateEmailTemplate from "../../utils/emailtemplate";
@@ -16,12 +16,12 @@ export class authUsecase implements IauthUseCase {
     this.mailer = mailer;
   }
 
-  async userExists(email: string): Promise<User | null> {
+  async userExists(email: string): Promise<user | null> {
     const user = await this.repository.findUserExists(email);
     return user;
   }
 
-  async registerUser(body: User): Promise<User> {
+  async registerUser(body: user): Promise<user> {
     // console.log("usecase");
     const emailToken = crypto.randomBytes(64).toString("hex");
     const hashedPassword = bcrypt.hashSync(body.password, 10);
