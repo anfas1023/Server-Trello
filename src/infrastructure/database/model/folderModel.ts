@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 interface folderDocument extends Document {
+  _id:string;
   folderName: string;
   listId: string;
   workspaceId: string;
