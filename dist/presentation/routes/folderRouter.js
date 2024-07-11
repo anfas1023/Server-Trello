@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const folderRepository_1 = require("../../infrastructure/repository/folderRepository");
+const folderUsecase_1 = require("../../application/usecase/folderUsecase");
+const folderController_1 = require("../controllers/folderController");
+const verifytoken_1 = __importDefault(require("../../middlewares/verifytoken"));
+const router = express_1.default.Router();
+const folderrepository = new folderRepository_1.FolderRepository();
+const folderUseCase = new folderUsecase_1.FolderUsecase(folderrepository);
+const folderController = new folderController_1.FolderController(folderUseCase);
+router.post("/createfolder", verifytoken_1.default, folderController.createFolder.bind(folderController));
+router.get('/getAllFolders/:workspaceId', verifytoken_1.default, folderController.geAllFolders.bind(folderController));
+router.put('/editFolder', verifytoken_1.default, folderController.editFolder.bind(folderController));
+router.post('/moveToTrash/:folderId', verifytoken_1.default, folderController.moveToTrash.bind(folderController));
+router.put('/restoreTrash/:folderId', verifytoken_1.default, folderController.restoreFromTrash.bind(folderController));
+router.delete('/deleteFromTrash/:folderId', verifytoken_1.default, folderController.deleteFromTrash.bind(folderController));
+exports.default = router;
