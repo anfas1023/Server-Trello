@@ -8,7 +8,7 @@ import passport from "./utils/passport-google-outh";
 import passport1 from "./utils/passport-github";
 import { createServer } from "http";
 import { Server } from "socket.io";
-dotenv.config();
+dotenv.config();     
 const port = process.env.PORT;
 connectDatabase();
 import authRouter from "./presentation/routes/authRoutes";
