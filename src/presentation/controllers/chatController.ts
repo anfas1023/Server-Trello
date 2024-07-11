@@ -152,7 +152,7 @@ try {
 
   
         if (checkConversation.length > 0) {
-          checkMessage(checkConversation[0]._id,senderId,reciverId);
+          checkMessage(checkConversation[0]._id as string,senderId,reciverId);  
         console.log("2");
 
         } else {
