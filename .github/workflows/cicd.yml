@@ -22,7 +22,7 @@ jobs:
         run: docker push anfasmuhammed/work-way:latest
 
   deploy:
-    needs: build
+    needs: build   
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
