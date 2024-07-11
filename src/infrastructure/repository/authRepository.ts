@@ -1,9 +1,10 @@
 import { User } from "../database/model/authModel";
 import { IAuthUserRepostory } from "../../application/interface/IAuthUserRepostory";
 import { Workspace } from "../database/model/workspacemodel";
+import {user} from '../../domain/entities/User'
 
 export class authRepository implements IAuthUserRepostory {
-  async findUserExists(email: string) {
+  async findUserExists(email: string) : Promise<user | null> {
     const user = await User.findOne({ email });
     if (user) {
       return user;
@@ -11,7 +12,7 @@ export class authRepository implements IAuthUserRepostory {
       return null;
     }
   }
-  async addNewUser(body: any, hashedpassowrd: string, emailToken: string) {
+  async addNewUser(body: any, hashedpassowrd: string, emailToken: string) :Promise<user> {
     const user = new User({
       username: body.username,
       email: body.email,
@@ -24,7 +25,7 @@ export class authRepository implements IAuthUserRepostory {
     return newUser;
   }
 
-  async findByEmail(email: string) {
+  async findByEmail(email: string) :Promise<user | null> {
     const user = await User.findOne({ email });
     if (user) {
       return user;
@@ -32,7 +33,7 @@ export class authRepository implements IAuthUserRepostory {
       return null;
     }
   }
-  async otpSet(email: string, otp: string) {
+  async otpSet(email: string, otp: string) : Promise<void> {
     const setOtp = await User.findOneAndUpdate(
       { email },
       { $set: { otp: otp } },
@@ -51,12 +52,12 @@ export class authRepository implements IAuthUserRepostory {
     return;
   }
 
-  async verification(email: string) {
+  async verification(email: string) : Promise<user | null> {
     const user = await User.findOne({ email });
     return user;
   }
 
-  async findOneAndUpdateForgotPassword(email: string, password: string) {
+  async findOneAndUpdateForgotPassword(email: string, password: string):Promise<user | null> {
     const updateUser = await User.findOneAndUpdate(
       { email },
       {
@@ -70,7 +71,7 @@ export class authRepository implements IAuthUserRepostory {
     return updateUser;
   }
 
-  async newUserVerifiedTrue(email: string) {
+  async newUserVerifiedTrue(email: string) : Promise<user | null> {
     const update = await User.findOneAndUpdate(
       { email },
       {
@@ -84,12 +85,12 @@ export class authRepository implements IAuthUserRepostory {
 
     return update;
   }
-  async findUserById(id: string) {
+  async findUserById(id: string) :Promise<user | null> {
     const user = await User.findById(id);
     return user;
   }
 
-  async verifyUser(emailToken: string) {
+  async verifyUser(emailToken: string) :Promise<boolean | null> {
     console.log("");
     const user = await User.findOne({ emailToken });
     console.log("user", user);
@@ -117,7 +118,7 @@ export class authRepository implements IAuthUserRepostory {
     role: string,
     userName: string,
     userId: string
-  ) {
+  ) : Promise<boolean> {  
     console.log("workpsaceId", workpsaceId, email);
 
     const result = await Workspace.updateOne(

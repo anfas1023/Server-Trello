@@ -6,6 +6,4 @@ export interface user{
     otp?:string
     password:string;
     isVerified?:boolean;
-  
-    
 }
