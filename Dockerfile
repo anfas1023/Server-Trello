@@ -21,7 +21,6 @@ ENV S3_ACCESS_KEY="AKIAXXWC5Z5CNLX5GD4P"
 ENV S3_SECRET_KEY="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"
 ENV REGION="ap-southeast-2"
 
-RUN npm run build
-CMD ["npm","run","start"]
+CMD ["npm","run","dev"]
 
 
