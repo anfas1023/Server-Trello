@@ -1,12 +1,24 @@
 FROM node:alpine3.18
+
+# Set working directory
 WORKDIR /app
-COPY package.json ./
+
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
+
+# Install dependencies
 RUN npm install
-COPY . . 
-EXPOSE 4000   
 
-# ENV
+# Copy the rest of your application code
+COPY . .
 
+# Install TypeScript globally
+RUN npm install -g typescript
+
+# Expose the application port
+EXPOSE 5000
+
+# Set environment variables
 ENV MONGO_URL="mongodb+srv://anfasmuhammed936:anfasmuhammed8590@cluster0.6hcxbof.mongodb.net/"
 ENV APP_KEY="bblb rymg relu gtax"
 ENV GOOGLE_CLIENT_ID="595057220047-km2nier9h3400o0qlana9n8ael9ngsk8.apps.googleusercontent.com"
@@ -22,6 +34,5 @@ ENV S3_ACCESS_KEY="AKIAXXWC5Z5CNLX5GD4P"
 ENV S3_SECRET_KEY="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"
 ENV REGION="ap-southeast-2"
 
-CMD ["npm","run","dev"]
-
-
+# Command to run the application
+CMD ["npm", "run", "start"]
