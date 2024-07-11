@@ -20,8 +20,6 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     if (!refreshToken) {
       // console.log("here3");
 
-    
-
       return res.status(401).json({ message: "Access token not provided" });
     } else {
       jwt.verify(refreshToken, JWT_REFRESH_SECRET, (err: any, user: any) => {
