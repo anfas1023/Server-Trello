@@ -5,7 +5,7 @@ interface UserDocument extends Document{
     username:string;
     email:string;
     password:string;
-    profilePhoto?: string;
+    profilePhoto?: string;  
     otp:string;
     phonenumber:string;
     isVerified:boolean;
