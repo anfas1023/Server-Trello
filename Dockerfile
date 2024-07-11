@@ -1,9 +1,9 @@
 FROM node:alpine3.18
 WORKDIR /app
 COPY package.json ./
-RUN npm install 
+RUN npm install
 COPY . . 
-EXPOSE 5000
+EXPOSE 4000   
 
 # ENV
 
