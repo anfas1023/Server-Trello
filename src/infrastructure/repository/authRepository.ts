@@ -1,6 +1,6 @@
 import { User } from "../database/model/authModel";
 import { IAuthUserRepostory } from "../../application/interface/IAuthUserRepostory";
-import {Workspace} from '../database/model/workspacemodel'
+import { Workspace } from "../database/model/workspacemodel";
 
 export class authRepository implements IAuthUserRepostory {
   async findUserExists(email: string) {
@@ -11,17 +11,13 @@ export class authRepository implements IAuthUserRepostory {
       return null;
     }
   }
-
-  async addNewUser(body: any,hashedpassowrd:string,emailToken:string) {
-
-    
-
+  async addNewUser(body: any, hashedpassowrd: string, emailToken: string) {
     const user = new User({
       username: body.username,
       email: body.email,
       password: hashedpassowrd,
       phonenumber: body.phonenumber,
-      emailToken:emailToken,
+      emailToken: emailToken,
     });
     const newUser = await user.save();
 
@@ -58,63 +54,77 @@ export class authRepository implements IAuthUserRepostory {
   async verification(email: string) {
     const user = await User.findOne({ email });
     return user;
-  } 
-
-  async findOneAndUpdateForgotPassword(email:string,password:string){
-  const updateUser=await User.findOneAndUpdate({email},{
-    $set:{
-      password:password
-    }
-  },{new:true})
-
-
-  return updateUser
   }
 
-  async newUserVerifiedTrue(email:string){
-const update=await User.findOneAndUpdate({email},{
-  $set:{
-    isVerified:true
-  }
-},{new:true})
-console.log("update",update);
-
-return update
-  }
-  async findUserById(id:string){
-    const user=await User.findById(id)
-    return user
-  }
-
-  async verifyUser(emailToken:string){
-    console.log("")
-    const user=await User.findOne({emailToken});
-    console.log("user",user)
-    if(user){
-      const updateuser=await User.findOneAndUpdate({email:user.email},{
-        $set:{
-          isVerified:true
+  async findOneAndUpdateForgotPassword(email: string, password: string) {
+    const updateUser = await User.findOneAndUpdate(
+      { email },
+      {
+        $set: {
+          password: password,
         },
-        $unset:{emailToken:1}
-      })
-    console.log("heer");
-    
-      return true
-    }else{
-      return false
+      },
+      { new: true }
+    );
+
+    return updateUser;
+  }
+
+  async newUserVerifiedTrue(email: string) {
+    const update = await User.findOneAndUpdate(
+      { email },
+      {
+        $set: {
+          isVerified: true,
+        },
+      },
+      { new: true }
+    );
+    console.log("update", update);
+
+    return update;
+  }
+  async findUserById(id: string) {
+    const user = await User.findById(id);
+    return user;
+  }
+
+  async verifyUser(emailToken: string) {
+    console.log("");
+    const user = await User.findOne({ emailToken });
+    console.log("user", user);
+    if (user) {
+      const updateuser = await User.findOneAndUpdate(
+        { email: user.email },
+        {
+          $set: {
+            isVerified: true,
+          },
+          $unset: { emailToken: 1 },
+        }
+      );
+      console.log("heer");
+
+      return true;
+    } else {
+      return false;
     }
   }
 
-  async addTospaceRepository(workpsaceId:string,email:string,role:string,userName:string,userId:string){
-    console.log("workpsaceId",workpsaceId,email);
-    
+  async addTospaceRepository(
+    workpsaceId: string,
+    email: string,
+    role: string,
+    userName: string,
+    userId: string
+  ) {
+    console.log("workpsaceId", workpsaceId, email);
+
     const result = await Workspace.updateOne(
       { _id: workpsaceId },
-      { $addToSet: { inviteMembers: { email, role,userName,userId } } }
-  );
+      { $addToSet: { inviteMembers: { email, role, userName, userId } } }
+    );
 
-    return true
+    return true;
   }
-
-
 }

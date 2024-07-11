@@ -42,7 +42,7 @@ router.get('/getUserData',controller.getLoggedInUserData.bind(controller))
 
 // image upload and profile route here
 
-router.post('/updateImage',verifyToken,controller.updateImageUrl.bind(controller))
+router.post('/updateImage',verifyToken,controller.updateImageUrl.bind(controller));
 router.post('/updateProfile',verifyToken,controller.updatePeofile.bind(controller));
 
 router.get('/verify',controller.userVerification.bind(controller));

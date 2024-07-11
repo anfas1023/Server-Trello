@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDatabase from "./config/database/connection";
 import Session from "express-session";
-import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";    
 import passport from "./utils/passport-google-outh";
 import passport1 from "./utils/passport-github";
 import { createServer } from "http";
