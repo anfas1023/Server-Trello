@@ -5,6 +5,13 @@ interface inviteMembers {
     userName?:string
 }
 
+interface OwnerDocument  {
+    email:string;
+    ownerId:string;
+    userName:string;
+    role:string
+  }
+
 export interface workspace{
     _id:string;
     workspacename:string;
@@ -12,5 +19,6 @@ export interface workspace{
     folderId?:string;
     listId?:string;
     description:string;
+    workspaceOwner:OwnerDocument;
     inviteMembers?:inviteMembers[]
 }

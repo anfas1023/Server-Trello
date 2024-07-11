@@ -14,6 +14,7 @@ interface OwnerDocument extends Document {
 }
 
 interface workspaceDocument extends Document {
+  _id:string;
   workspacename: string;
   userId: string;
   folderId: string;
