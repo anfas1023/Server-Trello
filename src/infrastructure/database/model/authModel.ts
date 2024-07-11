@@ -1,6 +1,7 @@
 import mongoose,{Schema,Document} from "mongoose"
 
 interface UserDocument extends Document{
+    _id:string
     username:string;
     email:string;
     password:string;
@@ -9,7 +10,6 @@ interface UserDocument extends Document{
     phonenumber:string;
     isVerified:boolean;
     emailToken:string;
-
 }
 const UserSchema=new Schema<UserDocument>({
     username:{type:String,required:true},
@@ -20,7 +20,6 @@ const UserSchema=new Schema<UserDocument>({
     phonenumber:{type:String,required:false},
     isVerified:{type:Boolean,required:false,default:false},
     emailToken:{type:String,required:false},
-
 })
 
 export const User=mongoose.model<UserDocument>("User",UserSchema);
