@@ -7,7 +7,7 @@ EXPOSE 5000
 
 # ENV
 
-ENV MONGO_URL="mongodb+srv://anfasmuhammed936:anfasmuhammed8590@cluster0.6hcxbof.mongodb.net/"
+ENV MONGO_URL="mongodb+srv://anfasmuhammed936:anfasmuhammed8590@cluster0.6hcxbof.mongodb.net/"    
 ENV APP_KEY="bblb rymg relu gtax"
 ENV GOOGLE_CLIENT_ID="595057220047-km2nier9h3400o0qlana9n8ael9ngsk8.apps.googleusercontent.com"
 ENV GOOGLE_CLIENT_SECRET="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"
