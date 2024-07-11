@@ -4,7 +4,10 @@ export class Token {
   private JWT_KEY  = process.env.JWT_KEY || " ";
   private JWT_REFRESHKEY: string = process.env.JWT_REFRESHKEY || " ";
   generateToken(userId: string): string {
+    console.log("this.JWT_KEY",this.JWT_KEY,this.JWT_REFRESHKEY);
+    
     const accesstoken = jwt.sign({ userId }, this.JWT_KEY);
+
     return accesstoken;
   }
 

@@ -43,17 +43,21 @@ export class authController {
   }
 
   async loginUser(req: Request, res: Response, next: NextFunction) {
-    try {
+    try {  
+      console.log("req.body.email",req.body.email,req.body.password);
+      
       const user = await this.authUsecase.userLogin(
         req.body.email,
         req.body.password
       );
-      // console.log(user);
+      console.log("user",user);
 
       if (user?.isVerified) {
         if (user?._id) {
           const token = this.token.generateToken(user._id);
           const refreshToken = this.token.generateRefreshToken(user._id);
+          console.log("token-login",token,refreshToken);
+          
           res.cookie("access_token", token, {
             httpOnly: true,
             sameSite: "none",

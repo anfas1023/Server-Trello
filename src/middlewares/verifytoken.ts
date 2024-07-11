@@ -18,7 +18,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     // console.log("here2");
 
     if (!refreshToken) {
-      console.log("here3");
+      // console.log("here3");
 
     
 

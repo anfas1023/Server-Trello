@@ -15,9 +15,9 @@ const auth = new authUsecase(repository, mailer);
 const controller = new authController(auth, token);
 
 router.post("/signup",controller.signUpUser.bind(controller))
-router.post("/login", controller.loginUser.bind(controller))
+router.post("/login",controller.loginUser.bind(controller))
 // router.post('/signup',(req,res,next)=>controller.signUpUser(req,res,next))
-console.log("heer");
+
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get(
