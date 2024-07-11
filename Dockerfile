@@ -3,9 +3,8 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . . 
-
-
-# ENV
+EXPOSE 5000
+# ENV   
 
 ENV MONGO_URL="mongodb+srv://anfasmuhammed936:anfasmuhammed8590@cluster0.6hcxbof.mongodb.net/"
 ENV APP_KEY="bblb rymg relu gtax"
@@ -22,6 +21,6 @@ ENV S3_ACCESS_KEY="AKIAXXWC5Z5CNLX5GD4P"
 ENV S3_SECRET_KEY="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"
 ENV REGION="ap-southeast-2"
 
-CMD ["npm","start"]
+CMD ["npm","run","dev"]
 
 
