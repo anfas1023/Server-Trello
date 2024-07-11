@@ -122,7 +122,7 @@ io.on("connection", (socket) => {
 export { io };
 app.use(passport.initialize());
 app.use(passport1.initialize());
-
+console.log("process.env.FRONTEND_URL",process.env.FRONTEND_URL)
 app.use(
   cors({
     origin: `${process.env.FRONTEND_URL}`,
