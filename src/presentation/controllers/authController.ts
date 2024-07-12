@@ -18,7 +18,7 @@ export class authController {
 
       const existinguser = await this.authUsecase.userExists(email);
 
-      console.log("controller");
+      // console.log("controller");
 
       if (existinguser) {
         return res.status(401).json({ message: "user already exists" });
@@ -44,7 +44,7 @@ export class authController {
 
   async loginUser(req: Request, res: Response, next: NextFunction) {
     try {  
-      console.log("req.body.email",req.body.email,req.body.password);
+      // console.log("req.body.email",req.body.email,req.body.password);
       
       const user = await this.authUsecase.userLogin(
         req.body.email,
@@ -56,7 +56,7 @@ export class authController {
         if (user?._id) {
           const token = this.token.generateToken(user._id);
           const refreshToken = this.token.generateRefreshToken(user._id);
-          console.log("token-login",token,refreshToken);
+          // console.log("token-login",token,refreshToken);
           
           res.cookie("access_token", token, {
             httpOnly: true,
@@ -72,7 +72,7 @@ export class authController {
             maxAge: 5 * 24 * 60 * 60 * 1000,
           });
           const { password, ...rest } = user;
-          console.log("user",user);
+          // console.log("user",user);
           
           let userData = {
             userId: user._id,

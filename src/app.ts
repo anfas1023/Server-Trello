@@ -20,7 +20,6 @@ import chatRoutes from "./presentation/routes/chatRoute";
 
 
 const app = express();
-
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
@@ -28,8 +27,6 @@ const io = new Server(httpServer, {
     credentials: true,
   },
 });
-
-
 
 type chatusersType = {
   user: { userId: string; socktId: string };
@@ -48,13 +45,19 @@ io.on("connection", (socket) => {
   });
 
   socket.on("addUser", (userId: string) => {
-    const isUserExist = chatusers.find((user) => user.userId === userId);
-
-    if (!isUserExist) {
+    const userIndex = chatusers.findIndex((user) => user.userId === userId);
+    const socketChecking = chatusers.find((user) => user.socktId === socket.id);
+  
+    if (!socketChecking) {
+      if (userIndex !== -1) {
+        // User exists, but with a different socketId
+        chatusers.splice(userIndex, 1); // Remove the old user entry
+      }
+  
       const user = { userId: userId, socktId: socket.id };
-      chatusers.push(user);
+      chatusers.push(user); // Add the new user entry
       console.log("chatusers", chatusers);
-
+  
       io.to(socket.id).emit("getUsers", chatusers);
     }
   
@@ -63,7 +66,7 @@ io.on("connection", (socket) => {
       async ({ senderId, reciverId, message, conversationId,timestamp }) => {
         const reciver = chatusers.find((user) => user.userId === reciverId);
         const sender = chatusers.find((user) => user.userId === senderId);
-        // console.log( senderId, reciverId, message, conversationId);
+        console.log( senderId, reciverId, message, conversationId);
         
         if (reciver && sender) {
           console.log("here 1");
