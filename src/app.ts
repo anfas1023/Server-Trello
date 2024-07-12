@@ -125,7 +125,7 @@ app.use(passport1.initialize());
 console.log("process.env.FRONTEND_URL",process.env.FRONTEND_URL)
 app.use(
   cors({
-    origin: `${process.env.FRONTEND_URL}`,
+    origin: `${process.env.FRONTEND_URL}`,  
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 204,
