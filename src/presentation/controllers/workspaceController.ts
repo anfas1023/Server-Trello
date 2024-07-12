@@ -52,14 +52,13 @@ export class WorkspaceController {
         return res.status(401).json({ error: "Unauthorized" });
       }
 
-      console.log("getAllWorkspcae");
+   
 
       const userId = req.user;
-      // console.log(req.user)
-      // const  userId="lfnvkejf"
+
       const getAllWorkspace =
         await this.workspaceusecase.getAllWorkspaceUsecase(userId as string);
-      // console.log("getAllWorkspace", getAllWorkspace);
+    
 
       if (getAllWorkspace) {
         return res.status(200).json(getAllWorkspace);
@@ -94,7 +93,7 @@ export class WorkspaceController {
       email: { $regex: query, $options: "i" },
     });
 
-    // console.log("searchedResult",searchedResult);
+
 
     if (searchedResult) {
       return res.status(200).json(searchedResult);
@@ -115,7 +114,6 @@ export class WorkspaceController {
       { $addToSet: { inviteMembers: { $each: emails } } }
     );
 
-    // console.log("result",result);
 
     if (result) {
       return res.status(201).json(result);
@@ -126,7 +124,7 @@ export class WorkspaceController {
 
   async editWorkspace(req: Request, res: Response, next: NextFunction) {
     const { workspacename, WorkspaceId } = req.body;
-    console.log("body", req.body);
+
 
     try {
       const updatedWorkspace = await Workspace.findByIdAndUpdate(
@@ -151,7 +149,6 @@ export class WorkspaceController {
     try {
       const { workspaceId } = req.params;
 
-      // console.log("req.params",req.params);
 
       const deleteWorkspace = await Workspace.findByIdAndDelete(workspaceId);
 
@@ -170,10 +167,6 @@ export class WorkspaceController {
     res: Response,
     next: NextFunction
   ) {
-    // console.log("getAllInVitedMemberFromWorkspace");
-
-    // console.log("req.user", req.user);
-    //  const {userId}=req.params
     if (!req.user) {
       return res.status(401).json({ messsage: "Forbiden" });
     }
@@ -183,18 +176,13 @@ export class WorkspaceController {
       userId as string
     );
 
-    // console.log("errpr");
 
     if (findeUserEmail) {
       const getInvitedMembers = await Workspace.find({
         inviteMembers: { $elemMatch: { userId: userId } },
       });
 
-      // console.log("getInvitedMembers", getInvitedMembers);
-
       if (getInvitedMembers) {
-        // console.log("here");
-
         return res.status(200).json(getInvitedMembers);
       } else {
         return res.status(400).json({ error: "error no invited members " });
@@ -251,7 +239,7 @@ export class WorkspaceController {
   ) {
     const { email, workspaceId } = req.query;
 
-    console.log("req.query",email, workspaceId);
+    // console.log("req.query",email, workspaceId);
 
     const addToSpace =
       await this.workspaceusecase.addToSpaceUsecase(

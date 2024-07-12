@@ -13,7 +13,7 @@ export class WorkspaceRepository implements IWorkspaceRepository {
     email:string,
   ) {
 
-    console.log("username",username,email,userId,workspaceOwner);
+    // console.log("username",username,email,userId,workspaceOwner);
     
     const newWorkspace = new Workspace({
       workspacename: workspacename,
@@ -40,7 +40,7 @@ export class WorkspaceRepository implements IWorkspaceRepository {
   }
 
   async workspaceNameExist(workspaceName: string) {
-    console.log(workspaceName);
+    // console.log(workspaceName);
 
     const workspace = await Workspace.findOne({ workspacename: workspaceName });
     console.log("workspace", workspace);
@@ -95,7 +95,7 @@ export class WorkspaceRepository implements IWorkspaceRepository {
             { new: true }
         );
 
-        console.log("result", result);
+        // console.log("result", result);
 
         return result;
     } catch (error) {

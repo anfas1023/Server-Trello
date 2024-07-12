@@ -81,7 +81,6 @@ export class authRepository implements IAuthUserRepostory {
       },
       { new: true }
     );
-    console.log("update", update);
 
     return update;
   }
@@ -91,7 +90,7 @@ export class authRepository implements IAuthUserRepostory {
   }
 
   async verifyUser(emailToken: string) :Promise<boolean | null> {
-    console.log("");
+ 
     const user = await User.findOne({ emailToken });
     console.log("user", user);
     if (user) {
@@ -104,7 +103,6 @@ export class authRepository implements IAuthUserRepostory {
           $unset: { emailToken: 1 },
         }
       );
-      console.log("heer");
 
       return true;
     } else {
@@ -119,7 +117,7 @@ export class authRepository implements IAuthUserRepostory {
     userName: string,
     userId: string
   ) : Promise<boolean> {  
-    console.log("workpsaceId", workpsaceId, email);
+
 
     const result = await Workspace.updateOne(
       { _id: workpsaceId },

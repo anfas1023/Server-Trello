@@ -10,7 +10,6 @@ export class FolderRepository implements IFolderRepository {
          workspaceId:workspaceId,
          trash:false
         })
-
         await newFolder.save()
         return newFolder 
     }

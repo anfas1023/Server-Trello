@@ -18,7 +18,7 @@ export class TaskRepository implements ITaskRepository {
     description:string,
     randomId:string
   ) {
-    // console.log("here", owner_id, assignee);
+
 
     const taskData = {
       taskName,
@@ -47,7 +47,7 @@ export class TaskRepository implements ITaskRepository {
     email: string,
     userId:string
   ) {
-    console.log("workspaceId",workspaceId,folderId,boardId,email); 
+  
 
     const assignedTasks = await Task.find({
       workspaceId: workspaceId,
@@ -55,15 +55,7 @@ export class TaskRepository implements ITaskRepository {
       boardId: boardId,
       assignee: { $elemMatch: { email: email } },
     });
-
-    console.log("assignedTasks",assignedTasks);
-    
-    
-
-    // return assignedTask
-    if(assignedTasks.length!==0){
-      // console.log("assignedTask",assignedTask);
-      
+    if(assignedTasks.length!==0){  
       return assignedTasks
     }
 
@@ -74,31 +66,16 @@ export class TaskRepository implements ITaskRepository {
       boardId: boardId,
       owner_id:userId,
     }); 
-    // console.log("1");
     
     if(OwnerTask){
-      console.log("OwnerTask",OwnerTask);
       return OwnerTask
     }else{
       return null
     }
   }
 
-  // async findUserAndAssignTask(query:string){
-  //   const searchedResult = await Workspace.find({
-  //     inviteMembers: {
-  //       $elemMatch: {
-  //         $regex: query,
-  //         $options: "i",
-  //       },
-  //     },
-  //   });
-
-  //   return searchedResult
-  // }
 
   async addAttachements(file:any,taskId:string){
-    console.log("file",file.originalname,file.location);
     const data={attachment:file.location,originalName:file.originalname }
     const updatedTask = await Task.findByIdAndUpdate(
       taskId,

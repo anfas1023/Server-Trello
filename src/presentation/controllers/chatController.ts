@@ -53,11 +53,8 @@ export class ChatController {
     try {
       const { conversationId, senderId, message, reciverId,timestamp } = req.body;
 
-      console.log(req.body);
-      
-      // console.log(timestamp);
-      
-      // console.log("req.body",req.body);reciverId:
+      // console.log(req.body);
+
       
       if (!senderId || !message || !reciverId){
         // console.log("on 1");
@@ -147,13 +144,13 @@ try {
           members: { $all: [req.query.senderId, req.query.receiverId] },
         });
 
-        console.log("1");
+        // console.log("1");
         
 
   
         if (checkConversation.length > 0) {
           checkMessage(checkConversation[0]._id as string,senderId,reciverId);  
-        console.log("2");   
+        // console.log("2");   
 
         } else {
           const reciverDetails=await User.findById(reciverId);
@@ -191,7 +188,7 @@ try {
       }
     );
 
-    console.log("searchedResult",searchedResult);
+    // console.log("searchedResult",searchedResult);
     
     
     
@@ -219,7 +216,7 @@ try {
 
   async AddAttachementToImage(req: Request, res: Response, next: NextFunction){
     const {senderId,reciverId,conversationId,message,timestamp} = req.body
-    console.log(req.file);
+    console.log("chat attachements",req.file);
 
     const newMessage = new Message({
        conversationId, senderId, message,reciverId:reciverId,createdAt:timestamp 
