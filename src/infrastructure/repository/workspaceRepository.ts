@@ -88,6 +88,8 @@ export class WorkspaceRepository implements IWorkspaceRepository {
         const user = await User.findOne({ email });
         const role = "member";
         console.log("addUserToSpace");
+        console.log("email",email,workspaceId,"workspaceId");
+        
 
         const result = await Workspace.findOneAndUpdate(
             { _id: workspaceId },
@@ -95,7 +97,7 @@ export class WorkspaceRepository implements IWorkspaceRepository {
             { new: true }
         );
 
-        // console.log("result", result);
+        console.log("result", result);
 
         return result;
     } catch (error) {

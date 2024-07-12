@@ -93,7 +93,6 @@ export class WorkspaceUseCase implements IWorkspaceUseCase {
   async userExist(email:string){
     return await this.workspaceRepository.userExist(email);
   }
-
   async addToSpaceUsecase(email:string,workspaceId:string){
    const workpsace=await this.workspaceRepository.addUserToSpace(email,workspaceId)
    console.log("addTospaceUsecas");
