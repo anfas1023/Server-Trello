@@ -2,7 +2,7 @@ import { IMailer } from "../interface/IMailer";
 import { IWorkspaceRepository } from "../interface/IWorkspaceRepository";
 import { IWorkspaceUseCase } from "../interface/IWorkspaceUseCase";
 import crypto from "crypto";
-import generateEmailTemplate from "../../utils/emailtemplate";
+import inviteUserTemplate from "../../utils/inviteUserTemplate";
 
 export class WorkspaceUseCase implements IWorkspaceUseCase {
   private workspaceRepository;
@@ -64,7 +64,7 @@ export class WorkspaceUseCase implements IWorkspaceUseCase {
   async sendVerificationMail(email: string, workspaceId: string) {
     // const emailToken = crypto.randomBytes(64).toString('hex');
     const verificationLink = `${process.env.FRONTEND_URL}/employee-login?email=${email}&workspaceId=${workspaceId}`;
-    const htmlTemplate = generateEmailTemplate(verificationLink);
+    const htmlTemplate = inviteUserTemplate(verificationLink);
     await this.mailer.sendEmail(email, htmlTemplate);
     console.log("mail sended to invited user");
     return true;
@@ -72,7 +72,7 @@ export class WorkspaceUseCase implements IWorkspaceUseCase {
 
   async sendVerificationMailToExistingUser(email:string,workspaceId:string){
     const verifiationLink=`${process.env.BACKEND_URL}/workspace/addTOWorkspace?email=${email}&workspaceId=${workspaceId}`;
-    const htmlTemplate = generateEmailTemplate(verifiationLink);
+    const htmlTemplate = inviteUserTemplate(verifiationLink);
     await this.mailer.sendEmail(email,htmlTemplate);
     console.log("on existing user");
     return true

@@ -165,7 +165,7 @@ export class authController {
             secure: true,
             maxAge: 3600000,
           });
-          return res.redirect(`http://localhost:3000/dashboard`);
+          return res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
         }
       }
     } catch (error) {

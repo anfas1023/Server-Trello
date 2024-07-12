@@ -78,10 +78,6 @@ export class ChatController {
         });
         await newMessage.save();
         const reciverDetails=await User.findById(reciverId)
-        // console.log("on 2");
-
-        // console.log(newMessage);
-        
         
         return res.status(200).json({messsage:"Message sent successfully",conversationId:newCoversation._id,senderId:senderId,reciverId:reciverId,reciverDetails,createdAt:timestamp});
       } else if (!conversationId && !reciverId) {

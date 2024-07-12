@@ -50,12 +50,11 @@ io.on("connection", (socket) => {
   
     if (!socketChecking) {
       if (userIndex !== -1) {
-        // User exists, but with a different socketId
-        chatusers.splice(userIndex, 1); // Remove the old user entry
+        chatusers.splice(userIndex, 1); 
       }
   
       const user = { userId: userId, socktId: socket.id };
-      chatusers.push(user); // Add the new user entry
+      chatusers.push(user);
       console.log("chatusers", chatusers);
   
       io.to(socket.id).emit("getUsers", chatusers);
