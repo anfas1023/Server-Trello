@@ -14,13 +14,12 @@ ENV GITHUB_CLIENT_ID="Ov23ctqzed3uPPb06cRU"
 ENV GITHUB_CLIENT_SECRET="4658dd9aaac31282cf10d8e2aef6523eb79d78ca"
 ENV JWT_KEY="djhfasddfvfefv"
 ENV JWT_REFRESHKEY="jdfhjdfjfd"
-ENV BACKEND_URL="http://localhost:5000"  
-ENV FRONTEND_URL="http://localhost:3000"
+ENV BACKEND_URL="https://www.app.work-way.site"  
+ENV FRONTEND_URL="www.work-way.site"
 ENV PORT=5000
 ENV S3_ACCESS_KEY="AKIAXXWC5Z5CNLX5GD4P"
 ENV S3_SECRET_KEY="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"
 ENV REGION="ap-southeast-2"
-
 CMD ["npm","run","dev"]
 
 
