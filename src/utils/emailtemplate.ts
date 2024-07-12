@@ -1,4 +1,4 @@
-function generateEmailTemplate(verificationLink :string): string {
+function generateEmailTemplate(verificationLink :string):string {
     return `
 <!DOCTYPE html>
 <html lang="en">
