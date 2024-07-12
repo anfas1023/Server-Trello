@@ -15,7 +15,7 @@ function inviteuserTemplate(verificationLink :string): string {
     <p>hello <strong></strong>,</p>
     <p>Yor are been invited To A new Workpsace please cick the below link To add to the new workspace:</p>
 
-    <a href=${verificationLink}style="display: inline-block; padding: 10px 20px; background-color: #3498db; color: #ffffff; text-decoration: none; border-radius: 5px;">Verify Email </a>
+    <a href=${verificationLink} style="display: inline-block; padding: 10px 20px; background-color: #3498db; color: #ffffff; text-decoration: none; border-radius: 5px;">Verify Email </a>
 
     <p style="margin-top: 20px;">if you are not interested to join this ignore it.</p>
 </body>
@@ -24,3 +24,4 @@ function inviteuserTemplate(verificationLink :string): string {
 }
 
 export default inviteuserTemplate;
+
