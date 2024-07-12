@@ -2,7 +2,7 @@ import mongoose,{Schema,Document} from "mongoose"
 
 interface UserDocument extends Document{
     _id:string
-    username:string;
+    username:string; 
     email:string;
     password:string;
     profilePhoto?: string;  
