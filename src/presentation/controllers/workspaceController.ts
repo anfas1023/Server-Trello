@@ -207,14 +207,13 @@ export class WorkspaceController {
         workspaceId as string
       );
     if (checkIfUserExist) {
-      // console.log("here");
       return res.status(409).json({ error: "user already exist in worksapce" });
     }
 
     const userExists = await this.workspaceusecase.userExist(email as string);
 
     if (userExists) {
-      // console.log("userExists");
+ 
 
       const sendMail=await this.workspaceusecase.sendVerificationMailToExistingUser(email as string,workspaceId as string)
       
