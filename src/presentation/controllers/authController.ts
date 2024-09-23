@@ -17,12 +17,7 @@ export class authController {
       const { username, email, password, workpsaceId, role } = req.body;
 
       const existinguser = await this.authUsecase.userExists(email);
-
-      // console.log("controller");
-
       console.log("workpsaceId",workpsaceId,role,"role");
-      
-
       if (existinguser) {
         return res.status(401).json({ message: "user already exists" });
       } else {

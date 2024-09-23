@@ -23,7 +23,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin:process.env.FRONTEND_URL ,
     credentials: true,
   },
 });
@@ -127,7 +127,7 @@ app.use(passport1.initialize());
 console.log("process.env.FRONTEND_URL",process.env.FRONTEND_URL)
 app.use(
   cors({
-    origin: `${process.env.FRONTEND_URL}`,  
+    origin: process.env.FRONTEND_URL,  
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 204,
